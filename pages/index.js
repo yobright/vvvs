@@ -20,9 +20,14 @@ export default function Home({ results }) {
   )
 }
 
+
+
 export async function getServerSideProps(context) {
   const genre = context.query.genre; 
-  const request = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || request.fetchTrending.url}`).then((res) => res.json());
+  
+  const res = await fetch(`https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending.url}`)
+
+  const request = await res.json();
 
   return {
     props: {
@@ -30,3 +35,4 @@ export async function getServerSideProps(context) {
     }
   }
 }
+
